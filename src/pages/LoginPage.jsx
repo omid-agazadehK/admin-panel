@@ -25,7 +25,6 @@ function RegisterPage() {
         Cookies.set("accessToken", data.token, { expires: 7 });
         navigate("/");
       },
-      onError: (error) => console.log(error),
     });
   };
 

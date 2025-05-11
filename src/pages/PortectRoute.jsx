@@ -2,38 +2,36 @@ import api from "@/config/api";
 import { useMutation } from "@tanstack/react-query";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
-import { data, Outlet } from "react-router";
+import { Outlet, useNavigate } from "react-router";
 
 function PortectRoute() {
-  //   const [mia, setMia] = useState([]);
-  const moz = false;
+  const navigate = useNavigate();
+  const token = Cookies.get("accessToken");
+  const [auth, setAuth] = useState(false);
   const fetchUser = () => {
-    const token = Cookies.get("accessToken");
-    return api.delete("/products/3", {
+    return api.delete("/products/sinabaomid", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
   };
-  //403 fake token // 404 product undefined //401 no header => token bro
-  const { mutate, isPending, isError, error } = useMutation({
+  const { mutate } = useMutation({
     mutationKey: ["validate-token"],
     mutationFn: fetchUser,
   });
+
   useEffect(() => {
     mutate(undefined, {
       onError: (error) => {
-        console.log("Full error object: ", error);
-        console.log("Status: ", error.response?.status);
-        console.log("Message: ", error.response?.data?.message);
+        if (error.response?.status === 401 || error.response?.status === 403)
+          return navigate("/login", { replace: true });
+        if (error.response?.status === 404) setAuth(true);
       },
     });
-  }, [mutate]);
+  }, [mutate, navigate]);
 
-  if (moz) {
+  if (auth) {
     return <Outlet />;
-  } else {
-    return "asdasdasdasdasd";
   }
 }
 

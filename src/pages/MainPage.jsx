@@ -1,10 +1,5 @@
-
 function MainPage() {
-  return (
-    <div>
-      hello
-    </div>
-  );
+  return <div>hello</div>;
 }
 
 export default MainPage;

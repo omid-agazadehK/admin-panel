@@ -6,6 +6,11 @@
       "components/*": ["./src/components/*"],
       "pages/*": ["./src/pages/*"],
       "routes/*": ["./src/routes/*"],
+      "schema/*": ["./src/schema/*"],
+      "services/*": ["./src/services/*"],
+      "config/*": ["./src/config/*"],
+      "contexts/*": ["./src/contexts/*"],
+      "ui/*": ["./src/ui/*"]
     }
   },
   "exclude": ["node_modules"]

@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import toast, { Toaster } from "react-hot-toast";
-import { useRegister } from "@/services/queries";
+import { useRegister } from "@/services/mutation";
 import Spinner from "@/ui/Spinner";
 
 function RegisterPage() {

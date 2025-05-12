@@ -1,4 +1,4 @@
-import { object, string, ref } from "yup";
+import { object, string, ref, number } from "yup";
 const userSchema = object({
   username: string()
     .required("این فیلد الزامی است")
@@ -22,3 +22,14 @@ export const registerSchema = loginSchema.concat(
       .required("تکرار رمز عبور الزامی است"),
   }),
 );
+export const createProductSchema = object({
+  name: string().required("نام کالا الزامی است"),
+  quantity: number()
+    .typeError("لطفا از اعداد مثبت استفاده کنید")
+    .min(1, " تعداد باید حداقل 1 باشد یا بیشتر باشد")
+    .required("تعداد الزامی است"),
+  price: number()
+    .typeError("لطفا از اعداد مثبت استفاده کنید")
+    .min(1, " تعداد باید حداقل 1 باشد یا بیشتر باشد")
+    .required("قیمت الزامی است"),
+});

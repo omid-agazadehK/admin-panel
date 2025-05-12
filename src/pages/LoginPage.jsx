@@ -3,8 +3,8 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { Toaster } from "react-hot-toast";
-import { useLogin } from "@/services/queries";
+import toast, { Toaster } from "react-hot-toast";
+import { useLogin } from "@/services/mutation";
 import Spinner from "@/ui/Spinner";
 import Cookies from "js-cookie";
 
@@ -22,9 +22,10 @@ function RegisterPage() {
   const onSubmit = (i) => {
     mutate(i, {
       onSuccess: (data) => {
-        Cookies.set("accessToken", data.token, { expires: 7 });
+        Cookies.set("accessToken", data.token, { expires: 2 / 48 });
         navigate("/");
       },
+      onError: () => toast.error("userName doas not exist"),
     });
   };
 

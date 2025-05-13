@@ -1,13 +1,13 @@
 import React from "react";
 
-function Form({ onSubmit, modalRef, setOpenModal, formDet, type = "create" }) {
+function Form({ onSubmit, modalRef, onclick, formMethods, type = "create" }) {
   const formType = type === "create";
   const {
     handleSubmit,
     register,
     formState: { errors },
     reset,
-  } = formDet;
+  } = formMethods;
   return (
     <>
       <div className="fixed right-0 top-0 h-dvh w-dvw bg-black/20"></div>
@@ -66,7 +66,7 @@ function Form({ onSubmit, modalRef, setOpenModal, formDet, type = "create" }) {
           <button
             type="button"
             onClick={() => {
-              setOpenModal(false);
+              onclick(null);
               reset();
             }}
             className="w-full rounded-xl bg-[#DFDFDF] text-[#282828CC]"

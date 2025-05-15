@@ -8,4 +8,5 @@ export const paths = [
   "ui",
   "config",
   "contexts",
+  "utils",
 ];

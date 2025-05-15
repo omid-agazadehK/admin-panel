@@ -1,8 +1,12 @@
+import { logOutHandler } from "@/utils/helper";
+import { useNavigate } from "react-router";
+
 function Search({ setSearch, setPage, search }) {
+  const navigate = useNavigate();
   return (
-    <form className="relative flex w-full rounded-2xl border border-[#E4E4E4] bg-white py-5 pl-7 pr-16">
+    <form className="relative flex w-full rounded-2xl border border-borderLight bg-white py-5 pl-7 pr-16">
       <input
-        className="w-full text-[#282828] placeholder:text-[#00000099] focus:outline-none"
+        className="w-11/12 text-textDark placeholder:text-black/60 focus:outline-none"
         placeholder="جستجو  کالا"
         onChange={(e) => {
           setSearch(e.target.value);
@@ -16,7 +20,7 @@ function Search({ setSearch, setPage, search }) {
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="absolute right-5 top-1/2 size-7 -translate-y-1/2 text-[#282828]"
+        className="absolute right-5 top-1/2 size-7 -translate-y-1/2 text-textDark"
       >
         <path
           strokeLinecap="round"
@@ -24,7 +28,12 @@ function Search({ setSearch, setPage, search }) {
           d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
         />
       </svg>
-      <div></div>
+      <span
+        onClick={() => logOutHandler(navigate)}
+        className="border-left relative w-2/12 cursor-pointer text-center hover:text-gray-500"
+      >
+        خروج از حساب
+      </span>
     </form>
   );
 }

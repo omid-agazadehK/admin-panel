@@ -1,4 +1,7 @@
-function Product({ data, setSelectedId, setModalType }) {
+import useModal from "@/hooks/useModal";
+
+function Product({ data }) {
+  const { openModal } = useModal();
   return (
     <>
       {data?.data.map((item) => (
@@ -13,7 +16,7 @@ function Product({ data, setSelectedId, setModalType }) {
             <span>{item.id}</span>
             <div className="flex gap-2">
               <span
-                onClick={() => (setModalType("edit"), setSelectedId(item.id))}
+                onClick={() => openModal("edit", item)}
                 className="cursor-pointer rounded-full p-1 text-green-500 transition-colors duration-150 hover:bg-green-500 hover:text-white"
               >
                 <svg
@@ -32,7 +35,7 @@ function Product({ data, setSelectedId, setModalType }) {
                 </svg>
               </span>
               <span
-                onClick={() => (setModalType("delete"), setSelectedId(item.id))}
+                onClick={() => openModal("delete", item)}
                 className="cursor-pointer rounded-full p-1 text-red-500 transition-colors duration-150 hover:bg-red-500 hover:text-white"
               >
                 <svg

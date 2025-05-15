@@ -1,6 +1,9 @@
+import useModal from "@/hooks/useModal";
+
 import React from "react";
 
-function Form({ onSubmit, modalRef, onclick, formMethods, type = "create" }) {
+function Form({ onSubmit, modalRef, formMethods, type = "create" }) {
+  const { closeModal } = useModal();
   const formType = type === "create";
   const {
     handleSubmit,
@@ -24,7 +27,7 @@ function Form({ onSubmit, modalRef, onclick, formMethods, type = "create" }) {
             نام کالا
             <input
               {...register("name")}
-              className="rounded-lg bg-[#F2F2F2] p-2.5 placeholder:text-[#8D8D8D] focus:outline-none"
+              className="placeholder:text-placeholderGray rounded-lg border-2 border-transparent bg-bgLight p-2.5 transition-colors duration-200 hover:border-2 hover:border-btnBlue focus:border-2 focus:border-btnBlue focus:outline-none"
               placeholder="نام کالا"
               id="name"
               type="text"
@@ -36,7 +39,7 @@ function Form({ onSubmit, modalRef, onclick, formMethods, type = "create" }) {
             تعداد موجودی
             <input
               {...register("quantity", { valueAsNumber: true })}
-              className="rounded-lg bg-[#F2F2F2] p-2.5 placeholder:text-[#8D8D8D] focus:outline-none"
+              className="placeholder:text-placeholderGray rounded-lg border-2 border-transparent bg-bgLight p-2.5 transition-colors duration-200 hover:border-2 hover:border-btnBlue focus:border-2 focus:border-btnBlue focus:outline-none"
               placeholder="تعداد "
               id="quantity"
               type="number"
@@ -48,7 +51,7 @@ function Form({ onSubmit, modalRef, onclick, formMethods, type = "create" }) {
             قیمت
             <input
               {...register("price", { valueAsNumber: true })}
-              className="rounded-lg bg-[#F2F2F2] p-2.5 placeholder:text-[#8D8D8D] focus:outline-none"
+              className="placeholder:text-placeholderGray rounded-lg border-2 border-transparent bg-bgLight p-2.5 transition-colors duration-200 hover:border-2 hover:border-btnBlue focus:border-2 focus:border-btnBlue focus:outline-none"
               placeholder="تعداد "
               type="number"
               id="price"
@@ -59,17 +62,17 @@ function Form({ onSubmit, modalRef, onclick, formMethods, type = "create" }) {
         <div className="mt-10 flex gap-2 text-sm [&>*]:py-2.5">
           <button
             type="submit"
-            className="w-full rounded-xl bg-[#55A3F0] text-white"
+            className="w-full rounded-xl bg-btnBlue text-white transition-colors duration-200 hover:bg-blue-500"
           >
             {formType ? "ایجاد " : "ثبت اطلاعات جدید"}
           </button>
           <button
             type="button"
             onClick={() => {
-              onclick(null);
+              closeModal();
               reset();
             }}
-            className="w-full rounded-xl bg-[#DFDFDF] text-[#282828CC]"
+            className="w-full rounded-xl bg-gray-200 text-textDark/80 transition-colors duration-200 hover:bg-gray-300"
           >
             انصراف
           </button>

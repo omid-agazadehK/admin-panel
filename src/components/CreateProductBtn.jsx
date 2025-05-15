@@ -1,7 +1,10 @@
-function CreateProduct({ onClick }) {
+import useModal from "@/hooks/useModal";
+
+function CreateProductBtn() {
+  const { openModal } = useModal();
   return (
     <div className="mt-10 flex items-center justify-between">
-      <span className="flex items-center justify-center gap-1.5 text-2xl text-[#282828]">
+      <span className="flex items-center justify-center gap-1.5 text-2xl text-textDark">
         <svg
           width="30"
           height="30"
@@ -68,8 +71,8 @@ function CreateProduct({ onClick }) {
         مدیریت کالا
       </span>
       <button
-        onClick={onClick}
-        className="h-full rounded-lg bg-[#55A3F0] px-4 py-2.5 text-white"
+        onClick={() => openModal("create")}
+        className="h-full rounded-lg bg-btnBlue px-4 py-2.5 text-white transition-colors duration-200 hover:bg-blue-500"
       >
         افزودن محصول
       </button>
@@ -77,4 +80,4 @@ function CreateProduct({ onClick }) {
   );
 }
 
-export default CreateProduct;
+export default CreateProductBtn;

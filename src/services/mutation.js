@@ -1,7 +1,6 @@
 import api from "@/config/api";
+import { showErrorToast, showSuccessToast } from "@/utils/toastHelper";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import toast from "react-hot-toast";
-
 const useRegister = () => {
   const fetchUser = (data) => {
     const { username, password } = data;
@@ -34,46 +33,46 @@ const usePostProduct = (formDet, setOpenModal) => {
   return useMutation({
     mutationKey: ["post-product"],
     mutationFn: postProduct,
-    onSuccess: () => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["products"] });
       setOpenModal(null);
       formDet.reset();
-      toast.success("afanar bro");
+      showSuccessToast(`محصول ${data.name} با موفقیت ایجاد شد 😊`);
     },
-    onError: (error) => toast.error(error.message),
+    onError: () => showErrorToast("خطایه سرور لطفا بعدا تلاش کنید"),
   });
 };
 
-const useEdit = (selectedId) => {
+const useEdit = (closeModal) => {
   const queryClient = useQueryClient();
-
-  function fetchEdit(data) {
-    return api.put(`/products/${selectedId}`, data);
+  function fetchEdit({ data, id }) {
+    return api.put(`/products/${id}`, data);
   }
   return useMutation({
     mutationKey: ["edit-products"],
     mutationFn: fetchEdit,
     onSuccess: () => {
-      toast.success("edited bra");
+      showSuccessToast("تقییرات با موفقیت اعمال شد");
       queryClient.invalidateQueries({ queryKey: ["products"] });
+      closeModal();
     },
-    onError: (err) => toast.error(err.message),
+    onError: () => showErrorToast("خطای سرور لطفا بعدا تلاش کنید"),
   });
 };
-const useDelete = (selectedId) => {
+const useDelete = () => {
   const queryClient = useQueryClient();
 
-  function fetchDelete() {
-    return api.delete(`/products/${selectedId}`);
+  function fetchDelete(id) {
+    return api.delete(`/products/${id}`);
   }
   return useMutation({
     mutationKey: ["Delete-products"],
     mutationFn: fetchDelete,
     onSuccess: () => {
-      toast.success("Deleted bra");
+      showSuccessToast("محصول مورد نظر حذف شد");
       queryClient.invalidateQueries({ queryKey: ["products"] });
     },
-    onError: (err) => toast.error(err.message),
+    onError: (err) => showErrorToast(err.message),
   });
 };
 export { useLogin, useRegister, usePostProduct, useEdit, useDelete };

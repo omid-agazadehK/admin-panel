@@ -2,9 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "Vazirmatn-Medium";
-  src: url("/fonts/webfonts/Vazirmatn-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
+@layer base {
+  @font-face {
+    font-family: "Vazirmatn-Medium";
+    src: url("/fonts/webfonts/Vazirmatn-Medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+  }
+}
+@layer components {
+  .border-left::after {
+    content: "";
+    position: absolute;
+    background: gray;
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+    width: 0.5px;
+    height: calc(100% + 20px);
+  }
 }

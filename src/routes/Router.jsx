@@ -12,7 +12,6 @@ function Router() {
         <Route index element={<MainPage />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
-
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/login" element={<LoginPage />} />
     </Routes>

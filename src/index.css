@@ -5,11 +5,12 @@
 @layer base {
   @font-face {
     font-family: "Vazirmatn-Medium";
-    src: url("/fonts/webfonts/Vazirmatn-Medium.woff2") format("woff2");
+    src: url("/fonts/webfonts/Vazirmatn-RD-FD-Medium.woff2") format("woff2");
     font-weight: 500;
     font-style: normal;
   }
 }
+
 @layer components {
   .border-left::after {
     content: "";

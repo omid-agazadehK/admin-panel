@@ -1,5 +1,5 @@
 import Spinner from "@/ui/Spinner";
-import { Link } from "react-router";
+import Link from "next/link";
 
 function AuthForm({
   onSubmit,
@@ -75,14 +75,16 @@ function AuthForm({
       </div>
       <button
         disabled={isPending}
-        className={`mt-9 flex w-full items-center justify-center gap-3 rounded-2xl bg-btnBlue py-3.5 text-xl text-white transition-colors duration-200 hover:bg-blue-500 focus:outline-blue-500 ${isPending && "cursor-not-allowed"}`}
+        className={`mt-9 flex w-full items-center justify-center gap-3 rounded-2xl bg-btnBlue py-3.5 text-xl text-white transition-colors duration-200 hover:bg-blue-500 focus:outline-blue-500 ${
+          isPending && "cursor-not-allowed"
+        }`}
       >
         {showRePassword ? "ثبت نام " : "ورود"}
         {isPending && <Spinner />}
       </button>
       <Link
         className="ml-auto mt-5 text-start text-linkBlue transition-colors duration-150 hover:text-blue-400 focus:outline-none"
-        to={showRePassword ? "/login" : "/register"}
+        href={showRePassword ? "/login" : "/register"}
       >
         {showRePassword ? "حساب کاربری دازید؟ " : " ایجاد حساب کاربری! "}
       </Link>

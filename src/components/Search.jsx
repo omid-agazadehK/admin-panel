@@ -1,8 +1,8 @@
 import { logOutHandler } from "@/utils/helper";
-import { useNavigate } from "react-router";
+import { useRouter } from "next/router";
 
 function Search({ setSearch, setPage, search }) {
-  const navigate = useNavigate();
+  const { push } = useRouter();
   return (
     <form className="relative flex w-full rounded-2xl border border-borderLight bg-white py-5 pl-7 pr-16">
       <input
@@ -29,7 +29,7 @@ function Search({ setSearch, setPage, search }) {
         />
       </svg>
       <span
-        onClick={() => logOutHandler(navigate)}
+        onClick={() => logOutHandler(push)}
         className="border-left relative w-2/12 cursor-pointer text-center hover:text-gray-500"
       >
         خروج از حساب

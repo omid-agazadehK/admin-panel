@@ -1,15 +1,15 @@
-import { registerSchema } from "@/schema/schema";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
-import { yupResolver } from "@hookform/resolvers/yup";
-
-import { Toaster } from "react-hot-toast";
-import { useRegister } from "@/services/mutation";
 import AuthForm from "@/components/AuthForm";
+import { registerSchema } from "@/schema/schema";
+import { useRouter } from "next/router";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { Toaster } from "react-hot-toast";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useRegister } from "@/services/mutation";
 import { showErrorToast } from "@/utils/toastHelper";
 
-function RegisterPage() {
-  const navigate = useNavigate();
+function Register() {
+  const { push } = useRouter();
   const {
     register,
     formState: { errors },
@@ -21,8 +21,11 @@ function RegisterPage() {
   const { isPending, mutate } = useRegister();
   const onSubmit = (i) => {
     mutate(i, {
-      onSuccess: () => navigate("/login"),
-      onError: () => showErrorToast("نام کابری وجود دارد"),
+      onSuccess: () => push("/login"),
+      onError: (error) => {
+        console.log(error);
+        showErrorToast("نام کابری وجود دارد");
+      },
     });
   };
 
@@ -40,4 +43,4 @@ function RegisterPage() {
   );
 }
 
-export default RegisterPage;
+export default Register;

@@ -1,15 +1,14 @@
-import { loginSchema } from "@/schema/schema";
-import { useForm } from "react-hook-form";
-import {  useNavigate } from "react-router";
-import { yupResolver } from "@hookform/resolvers/yup";
-
-import toast, { Toaster } from "react-hot-toast";
-import { useLogin } from "@/services/mutation";
-import Cookies from "js-cookie";
 import AuthForm from "@/components/AuthForm";
+import { loginSchema } from "@/schema/schema";
+import { useLogin } from "@/services/mutation";
+import { yupResolver } from "@hookform/resolvers/yup";
+import Cookies from "js-cookie";
+import { useRouter } from "next/router";
+import { useForm } from "react-hook-form";
+import toast, { Toaster } from "react-hot-toast";
 
 function LoginPage() {
-  const navigate = useNavigate();
+  const { push } = useRouter();
   const {
     register,
     formState: { errors },
@@ -23,7 +22,7 @@ function LoginPage() {
     mutate(i, {
       onSuccess: (data) => {
         Cookies.set("accessToken", data.token, { expires: 2 / 48 });
-        navigate("/");
+        push("/");
       },
       onError: () => toast.error("userName doas not exist"),
     });
@@ -32,7 +31,7 @@ function LoginPage() {
   return (
     <div className="flex h-full items-center justify-center">
       <Toaster />
-    
+
       <AuthForm
         onSubmit={handleSubmit(onSubmit)}
         register={register}

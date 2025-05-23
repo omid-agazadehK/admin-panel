@@ -8,6 +8,18 @@
     src: url("/fonts/webfonts/Vazirmatn-RD-FD-Medium.woff2") format("woff2");
     font-weight: 500;
     font-style: normal;
+    font-display: swap;
+  }
+  body {
+    background-color: #f7f8f8;
+  }
+  #__next {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100dvh;
+    padding-top: 1.5rem;
+    font-family: "Vazirmatn-Medium", sans-serif;
   }
 }
 

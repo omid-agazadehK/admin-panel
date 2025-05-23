@@ -4,6 +4,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 const useRegister = () => {
   const fetchUser = (data) => {
     const { username, password } = data;
+    console.log(username, password)
     return api.post("/auth/register", { username, password });
   };
 

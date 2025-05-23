@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_BASE_URL,
+  baseURL: "http://localhost:3000",
 });
 api.interceptors.request.use(
   (req) => {
@@ -12,7 +12,7 @@ api.interceptors.request.use(
     }
     return req;
   },
-  (error) => Promise.reject(error),
+  (error) => Promise.reject(error)
 );
 api.interceptors.response.use(
   (response) => response.data,
@@ -24,6 +24,6 @@ api.interceptors.response.use(
       }
     }
     return Promise.reject(error);
-  },
+  }
 );
 export default api;

@@ -27,7 +27,7 @@ A simple admin panel for managing an online store. This includes user authentica
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/your-repo.git
+git clone https://github.com/omid-agazadehK/admin-panel.git
 ```
 
 2.  Install dependencies for both frontend and backend:

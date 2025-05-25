@@ -14,4 +14,5 @@ export const useAuth = () => {
       setIsToken(true);
     }
   }, [push]);
+  return isToken;
 };
